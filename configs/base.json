@@ -1,0 +1,28 @@
+{
+  "name": "partial_mean",
+  "data": "data/prepared/paper_splice_sites_acceptor",
+  "output": "results/partial_mean",
+  "tasks": [
+    "splice_sites_acceptor"
+  ],
+  "checkpoint": "checkpoints/tiny/weights.ckpt",
+  "model_config": "checkpoints/tiny/config.json",
+  "method": "partial",
+  "head": "mean",
+  "max_length": 600,
+  "epochs": 30,
+  "patience": 7,
+  "batch_size": 256,
+  "micro_batch": 4,
+  "backbone_lr": 0.0001,
+  "head_lr": 0.001,
+  "seed": 0,
+  "workers": 0,
+  "device": "cuda",
+  "precision": "fp32",
+  "regional_bins": 4,
+  "local_radius": 20,
+  "cache_features": false,
+  "lora_rank": 4,
+  "lora_alpha": 8
+}

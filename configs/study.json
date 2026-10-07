@@ -1,0 +1,26 @@
+{
+  "name": "partial_acceptor_original_v1",
+  "base": "configs/base.json",
+  "tasks": [
+    "splice_sites_acceptor"
+  ],
+  "heads": [
+    "mean",
+    "max",
+    "last",
+    "attention",
+    "regional",
+    "regional_attention",
+    "residual_regional_attention"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "methods": [
+    "partial"
+  ],
+  "lr_trials": 1,
+  "data_revision": "sha256:b8181cbe2d0dc9219d6a1204251b351e654f56593733bd58e17a68eba235a438"
+}
