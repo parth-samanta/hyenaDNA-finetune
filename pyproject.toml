@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hyenadna-pooling"
+version = "0.1.0"
+description = "Partial HyenaDNA fine-tuning with aggregation comparisons"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[project.scripts]
+hyenadna-pooling = "hyenadna.workflow:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
