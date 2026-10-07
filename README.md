@@ -112,7 +112,7 @@ $$
 
 Four learned gate logits $\gamma_r$ start at zero, giving $g_r=0.5$. Pooling work scales linearly with sequence length and hidden width for a fixed four bins; it does not construct an $L\times L$ attention matrix.
 
-These bins describe **position within the supplied sequence**, not verified upstream/site-centered/downstream biological regions. Coordinate-based `site_regions` is supported separately but was not included in either completed study, because verified site indices were not supplied for every example.
+These bins describe **position within the supplied sequence**, not verified upstream/site-centered/downstream biological regions. Coordinate-based `site_regions` is supported separately but was not included in the study, because verified site indices were not supplied for every example.
 
 ### Exact parameters for the complete classification model
 
