@@ -106,7 +106,8 @@ $$
 There is no query/key/value matrix or pairwise self-attention in this pooling layer. The query starts at zero, so the initial summaries equal regional means. In the residual variant, with regional mean $m_r$, the summary is
 
 $$
-z_r=(1-g_r)m_r+g_ra_r,\qquad g_r=\operatorname{sigmoid}(\gamma_r).
+z_r=(1-g_r)m_r+g_r a_r,\qquad
+g_r=\frac{1}{1+e^{-\gamma_r}}.
 $$
 
 Four learned gate logits $\gamma_r$ start at zero, giving $g_r=0.5$. Pooling work scales linearly with sequence length and hidden width for a fixed four bins; it does not construct an $L\times L$ attention matrix.
