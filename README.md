@@ -41,9 +41,8 @@ Dropout(0.1) → Linear(256, 2)     trainable
 Two-class cross-entropy loss
 ```
 
-**Partial means training the entire second Hyena block plus the final LayerNorm**, starting at epoch 1. The embeddings and first block stay frozen throughout training. Pooling parameters, the projection and the classifier are jointly optimized with the second block. The frozen encoder modules run in evaluation mode, while the second block runs in training mode.
+**We trained the entire second Hyena block plus the final LayerNorm**, starting at epoch 1. The embeddings and first block stay frozen throughout training. Pooling parameters, the projection and the classifier are jointly optimized with the second block. The frozen encoder modules run in evaluation mode, while the second block runs in training mode.
 
-The implementation is [`Model.set_stage` and `Model.train`](src/hyenadna/models.py). These studies use `method="partial"`; they do not use the separate LoRA, adapter, frozen-encoder or gradual-unfreezing options. The `head_epochs` and `partial_epochs` configuration fields belong to gradual unfreezing and do not create stages in these runs.
 
 ### Exact encoder parameter counts
 
@@ -181,12 +180,6 @@ The task is binary splice-acceptor classification using 600-nucleotide sequences
 | Evaluation | 2,218 | 1,100 | 1,118 |
 
 Validation and evaluation reference the **same** holdout sequences. The original training and holdout FASTA partitions are retained without repartitioning.
-
-The original source is the acceptor FASTA data bundled in `hyenadna/hyena-dna-nt6`, pinned to application-layer SHA-256 `b8181cbe2d0dc9219d6a1204251b351e654f56593733bd58e17a68eba235a438`. Training contains 9,899 negative and 10,061 positive records; the holdout contains 1,100 negative and 1,118 positive records. All original records and labels are retained, including one pair of identical training sequences carrying opposite labels.
-
-The original [HyenaDNA dataset loader](https://github.com/HazyResearch/hyena-dna/blob/main/src/dataloaders/datasets/nucleotide_transformer_dataset.py) maps `val` to `test`. We reproduce that data protocol: **evaluation scores use the same examples that selected the checkpoints**, so they are not independent test estimates. Matching the paper's dataset and split does not reproduce its full fine-tuning protocol; this project studies the partial method described above.
-
-Prepared CSVs, source revisions and split checksums are recorded under `data/prepared/`. Run provenance records the checkpoint SHA-256, source hashes, environment and exact training IDs. The checkpoint used in the study has SHA-256 `a34708af8cab1b9c4cdf46e04267c149c5baf117b052b4e74ac387dd34690839`.
 
 ## Completed results
 
