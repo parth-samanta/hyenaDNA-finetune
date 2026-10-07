@@ -204,22 +204,5 @@ All seven methods have three completed training runs and three saved holdout eva
 
 Regional attention has the highest mean macro F1: **0.9390**. Its increase over regional means is approximately **1.10 percentage points**, for 256 additional pooling parameters. Three seeds describe optimization variation; they do not establish statistical significance. The holdout is also used for checkpoint selection, as described above.
 
-[Full results and CSV](reports/partial_acceptor_original_v1/README.md) ·
-[Detailed method report](reports/HyenaDNA_Aggregation_Methods_Report.pdf)
 
-## Run or reopen a study
 
-Use the `hyenadna-pooling` environment with the dependencies installed and a CUDA-capable PyTorch build. From the project root:
-
-```bash
-conda activate hyenadna-pooling
-python -m hyenadna
-```
-
-In Spyder, select this environment, open [`src/run_study.py`](src/run_study.py) and press **F5**. Its `STUDY` setting selects the single default configuration, `configs/study.json`.
-
-The workflow prepares the selected dataset, obtains the checkpoint when needed, runs pending models, selects checkpoints, evaluates them and exports the comparison automatically. Reopening the completed study reuses its saved runs and evaluations. If an interrupted run has no `complete.json`, its partial output is archived and that individual run restarts; it does not resume optimizer state mid-run.
-
-Training artifacts are stored in `results/partial_acceptor_original_v1/`. Exported comparisons are in `reports/partial_acceptor_original_v1/`. Each run retains `config.json`, `architecture.json`, `provenance.json`, `history.jsonl`, `best.pt`, `validation.json`, `complete.json`, `test.json` and `test_predictions.csv`.
-
-Tests can be run with `python -m unittest discover -s tests -v`.
